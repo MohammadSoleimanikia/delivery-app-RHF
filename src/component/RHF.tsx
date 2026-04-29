@@ -13,12 +13,12 @@ export default function Rhf() {
     const { register, handleSubmit, formState } = useForm<FoodDeliveryFormType>(
         {
             resolver:zodResolver(foodDeliverySchema),
-            mode: "onChange",
+            mode: "onSubmit",
             defaultValues: {
                 customerName: "",
                 email: "",
                 mobile: "",
-                orderNo: new Date().valueOf(),
+                orderNo: 0,
             },
         },
     );
@@ -26,6 +26,7 @@ export default function Rhf() {
         <div className="min-h-screen font-light bg-gray-800 flex items-center justify-center p-4">
             {/* Form */}
             <form
+                
                 // handleSubmit have 2 arg onValid and onInvalid that invalid is optional
                 onSubmit={handleSubmit(onSubmit, onError)}
                 className="space-y-8"
@@ -39,6 +40,7 @@ export default function Rhf() {
                                 className=" text-sm text-white w-full px-4 pt-5 pb-2 border border-gray-500 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 peer transition-all"
                                 placeholder=""
                                 {...register("orderNo", {
+                                    valueAsNumber:true,
                                     required: "order number is required",
                                 })}
                             />
@@ -67,6 +69,7 @@ export default function Rhf() {
                 </div>
 
                 <Input
+                    
                     id="customerName"
                     label="Customer Name"
                     register={register}
