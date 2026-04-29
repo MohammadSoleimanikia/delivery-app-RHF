@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
-import type { FoodDeliveryFormType } from "./RHF";
 import type { UseFormRegister, FieldPath } from "react-hook-form";
+import type { FoodDeliveryFormType } from "../types/foodDelivery";
 
 type InputProps = ComponentPropsWithoutRef<"input"> & {
     register: UseFormRegister<FoodDeliveryFormType>;

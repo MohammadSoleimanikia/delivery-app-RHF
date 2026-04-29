@@ -1,11 +1,7 @@
 import { useForm } from "react-hook-form";
 import Input from "./Input";
-export type FoodDeliveryFormType = {
-    orderNo: number;
-    customerName: string;
-    mobile: string;
-    email: string;
-};
+import { foodDeliverySchema, type FoodDeliveryFormType } from "../types/foodDelivery";
+import { zodResolver } from "@hookform/resolvers/zod";
 export default function Rhf() {
     // form data is sended by handle submit method in RHF
     const onSubmit = (formData: FoodDeliveryFormType) => {
@@ -16,6 +12,7 @@ export default function Rhf() {
     };
     const { register, handleSubmit, formState } = useForm<FoodDeliveryFormType>(
         {
+            resolver:zodResolver(foodDeliverySchema),
             mode: "onChange",
             defaultValues: {
                 customerName: "",
