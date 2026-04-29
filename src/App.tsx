@@ -1,11 +1,9 @@
-import { useState } from "react";
-import FoodDeliveryForm from "./component/FoodDeliveryForm";
+import RHF from "./component/RHF";
 
 function App() {
-    
     return (
         <div className="bg-red-400">
-            <FoodDeliveryForm />
+            <RHF />
         </div>
     );
 }
