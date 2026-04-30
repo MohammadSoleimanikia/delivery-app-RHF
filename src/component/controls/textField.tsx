@@ -1,10 +1,8 @@
 import type { ComponentPropsWithoutRef } from "react";
-import type { UseFormRegister, FieldPath } from "react-hook-form";
-import type { FoodDeliveryFormType } from "../types/foodDelivery";
+import type { FieldPath } from "react-hook-form";
+import type { FoodDeliveryFormType } from "../../types/foodDelivery";
 
 type InputProps = ComponentPropsWithoutRef<"input"> & {
-    register: UseFormRegister<FoodDeliveryFormType>;
-    // fieldPath is like union of all types in FoodDeliveryFormType
     id: FieldPath<FoodDeliveryFormType>;
     label: string;
     error?: string;
@@ -12,7 +10,6 @@ type InputProps = ComponentPropsWithoutRef<"input"> & {
 };
 
 export default function Input({
-    register,
     id,
     label,
     error,
@@ -27,7 +24,6 @@ export default function Input({
                     id={id}
                     className="text-sm text-white w-full px-4 pt-5 pb-2 border border-gray-500 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 peer transition-all"
                     placeholder=" "
-                    {...register(id)}
                     {...restProps}
                 />
                 <label
