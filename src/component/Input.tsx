@@ -5,19 +5,19 @@ import type { FoodDeliveryFormType } from "../types/foodDelivery";
 type InputProps = ComponentPropsWithoutRef<"input"> & {
     register: UseFormRegister<FoodDeliveryFormType>;
     // fieldPath is like union of all types in FoodDeliveryFormType
-    id: FieldPath<FoodDeliveryFormType>; 
+    id: FieldPath<FoodDeliveryFormType>;
     label: string;
     error?: string;
-    type?: string; 
-}
+    type?: string;
+};
 
-export default function Input({ 
-    register, 
-    id, 
-    label, 
-    error, 
-    type = "text", 
-    ...restProps 
+export default function Input({
+    register,
+    id,
+    label,
+    error,
+    type = "text",
+    ...restProps
 }: InputProps) {
     return (
         <div>
@@ -27,8 +27,8 @@ export default function Input({
                     id={id}
                     className="text-sm text-white w-full px-4 pt-5 pb-2 border border-gray-500 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 peer transition-all"
                     placeholder=" "
-                    {...register(id)} 
-                    {...restProps} 
+                    {...register(id)}
+                    {...restProps}
                 />
                 <label
                     htmlFor={id}
@@ -36,10 +36,8 @@ export default function Input({
                 >
                     {label}
                 </label>
-                {error && (
-                    <p className="error mt-1 text-sm">{error}</p>
-                )}
             </div>
+            {error && <p className="error mt-1 text-sm">{error}</p>}
         </div>
     );
 }
