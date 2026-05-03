@@ -1,9 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
-import type { FieldPath } from "react-hook-form";
-import type { FoodDeliveryFormType } from "../../types/foodDelivery";
 
 type InputProps = ComponentPropsWithoutRef<"input"> & {
-    id: FieldPath<FoodDeliveryFormType>;
+    id: string
     label: string;
     error?: string;
     type?: string;
