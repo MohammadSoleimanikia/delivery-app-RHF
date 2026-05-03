@@ -7,6 +7,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import CheckoutForm from "./forms/checkoutForm";
 import DeliveryAddressForm from "./forms/DeliveryAddressForm";
+
 export default function Rhf() {
     // form data is sended by handle submit method in RHF
     const onSubmit = (formData: FoodDeliveryFormType) => {
@@ -43,8 +44,9 @@ export default function Rhf() {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isValid, isValidating },
     } = methods;
+    console.log(isValid, isValidating);
     return (
         <div className="min-h-screen font-light bg-gray-800 flex items-center justify-center p-4">
             {/* Form */}
@@ -104,10 +106,13 @@ export default function Rhf() {
                     </div>
 
                     <CheckoutForm />
-                    <DeliveryAddressForm/>
+                    <DeliveryAddressForm />
                     <button
+                        disabled={!isValid}
                         type="submit"
-                        className="w-full text-sm font-light bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3 rounded-lg transition-all duration-1000 transform hover:scale-[1.02] shadow-md"
+                        className={` w-full text-sm font-light bg-linear-to-r text-white py-3 rounded-lg transition-all duration-1000 transform hover:scale-[1.02] shadow-md
+                            ${isValid ? " from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 " 
+                                : " from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 cursor-not-allowed "}  `}
                     >
                         submit
                     </button>
