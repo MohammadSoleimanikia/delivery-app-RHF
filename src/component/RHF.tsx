@@ -44,9 +44,9 @@ export default function Rhf() {
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid, isValidating },
+        formState: { errors, isValid, isSubmitSuccessful },
     } = methods;
-    console.log(isValid, isValidating);
+    console.log(!isValid || isSubmitSuccessful);
     return (
         <div className="min-h-screen font-light bg-gray-800 flex items-center justify-center p-4">
             {/* Form */}
@@ -108,13 +108,18 @@ export default function Rhf() {
                     <CheckoutForm />
                     <DeliveryAddressForm />
                     <button
-                        disabled={!isValid}
+                        disabled={!isValid || isSubmitSuccessful}
                         type="submit"
                         className={` w-full text-sm font-light bg-linear-to-r text-white py-3 rounded-lg transition-all duration-1000 transform hover:scale-[1.02] shadow-md
-                            ${isValid ? " from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 " 
-                                : " from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 cursor-not-allowed "}  `}
+                            ${
+                                isValid && !isSubmitSuccessful
+                                    ? " from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 "
+                                    : " from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 cursor-not-allowed "
+                            }  `}
                     >
-                        submit
+                        {isSubmitSuccessful
+                            ? "form submitted successfully "
+                            : "submit"}
                     </button>
                 </form>
             </FormProvider>
